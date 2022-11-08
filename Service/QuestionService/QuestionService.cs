@@ -32,6 +32,14 @@ namespace QuestionAPP.Service.QuestionService
 
         public List<Question> GetAllQuestions()
         {
+            List<Question> questionsDb = context.Questions.ToList();
+
+            foreach (Question question in questionsDb)
+            {
+                List<Answer> answersDb = context.Answers.ToList();
+                List<Answer> questionAnswer = answersDb.FindAll(answer => answer == question.Answer); ;
+
+            }
             return context.Questions.ToList();
         }
 
