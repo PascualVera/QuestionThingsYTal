@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuestionAPP.Service.UserService;
 
 namespace QuestionAPP.Controllers
 {
+    [EnableCors]
     [ApiController]
     [Route("user/[controller]")]
     public class UserController : Controller

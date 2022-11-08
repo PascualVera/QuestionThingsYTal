@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using QuestionAPP.Service.QuestionService;
 
 namespace QuestionAPP.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class QuestionController : ControllerBase
@@ -28,6 +30,13 @@ namespace QuestionAPP.Controllers
         public Question addQuestions(Question newQuestion)
         {
             return service.addQuestion(newQuestion);
+        }
+
+        [HttpGet]
+        [Route("/question/answers")]
+        public List<UserAnswer> GetAnswers(int id)
+        {
+            return service.getAllAnswerInQuestion(id);
         }
     }
 }

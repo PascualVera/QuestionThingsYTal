@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuestionAPP.Service.UserAnswerService;
 
 namespace QuestionAPP.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class UserAnswerController : ControllerBase
@@ -17,7 +19,7 @@ namespace QuestionAPP.Controllers
             this.service = service; 
         }
 
-
+        [EnableCors]
         [HttpPost]
         [Route("/user-anwers")]
         public UserAnswer setAnswer(UserAnswer answer)

@@ -1,4 +1,5 @@
 ﻿using QuestionAPP.Data;
+using QuestionAPP.Migrations;
 
 namespace QuestionAPP.Service.QuestionService
 {
@@ -40,8 +41,23 @@ namespace QuestionAPP.Service.QuestionService
 
              return newQuestion;
         }
+
+        public List<UserAnswer> getAllAnswerInQuestion(int id)
+        {
+            Question question = GetById(id);
+
+            List<UserAnswer> userAnswerDb = context.UserAnswers.ToList();
+
+            return userAnswerDb.Where(answer => answer.QuestionId == question.Id).ToList();
+            
+
+
+
+        }
+
+       
     }
 
 
 
-}
+}   

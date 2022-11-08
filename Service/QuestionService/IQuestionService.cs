@@ -6,7 +6,8 @@
 
         public Question GetById(int id);
         public Question addQuestion(Question newQuestion);
-
+        public List<UserAnswer> getAllAnswerInQuestion(int id);
+    
 
     }
 }
