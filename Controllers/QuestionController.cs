@@ -19,6 +19,7 @@ namespace QuestionAPP.Controllers
         }
 
         [HttpGet]
+        [EnableCors]
         [Route("/question/all")]
         public List<Question> GetQuestions()
         {
