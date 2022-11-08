@@ -1,5 +1,6 @@
-﻿using QuestionAPP.Data;
-
+﻿using Microsoft.EntityFrameworkCore;
+using QuestionAPP.Data;
+using System.Threading.Tasks;
 namespace QuestionAPP.Service.UserService
 {
     public class UserService : IUserService
@@ -11,24 +12,45 @@ namespace QuestionAPP.Service.UserService
         }
 
 
-        public  List<User>  getUsers()
+        public async Task<ServiceResponse<List<User>>> getUsers()
         {
-            List<User> dbUsers =  context.Users.ToList();
-            return dbUsers;
+           
+            List<User> dbUsers = await context.Users.ToListAsync();
+            ServiceResponse<List<User>> res = new ServiceResponse<List<User>>();
+            res.Data = dbUsers;
+            res.Status = 200;
+            return res;
         }
 
-        public User addUser(User newUser)
+        public async Task<ServiceResponse<User>> addUser(User newUser)
         {
-            Console.WriteLine(newUser);
+            
             context.Add(newUser);
-            context.SaveChanges();
-            return newUser;
+            await context.SaveChangesAsync();
+
+            ServiceResponse<User> res = new ServiceResponse<User>();
+
+            res.Data = newUser;
+            res.Status = 200;
+            return res;
         }
 
-        public User getUser(string email)
+        public async Task<ServiceResponse<User>> getUser(User user)
         {
-            User user = context.Users.First(user => user.email == email);
-            return user;
+            User loggedUser = context.Users.FirstOrDefault(u => u.email == user.email);
+            ServiceResponse<User> res = new ServiceResponse<User>();
+            if (loggedUser != null)
+            {
+                res.Data = loggedUser;
+                res.Status = 200;
+            }
+            else
+            {
+                res.Data = null;
+                res.Status = 404;
+            }
+           
+            return res;
         }
     }
 }

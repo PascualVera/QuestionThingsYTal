@@ -1,11 +1,14 @@
-﻿namespace QuestionAPP.Service.UserService
+﻿
+using System.Threading.Tasks;
+namespace QuestionAPP.Service.UserService
+
 {
     public interface IUserService
     {
-        public User addUser(User newUser);
-        public List<User> getUsers();
+        public Task<ServiceResponse<User>> addUser(User newUser);
+        public Task<ServiceResponse<List<User>>> getUsers();
 
-        public User getUser(String email);
+        public Task<ServiceResponse<User>> getUser(User user);
     }
 
 }

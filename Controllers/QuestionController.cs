@@ -6,13 +6,12 @@ using QuestionAPP.Service.QuestionService;
 
 namespace QuestionAPP.Controllers
 {
-    [EnableCors]
+   
     [Route("api/[controller]")]
     [ApiController]
     public class QuestionController : ControllerBase
     {
         private  IQuestionService service { get; }
-        
 
         public QuestionController(IQuestionService service)
         {

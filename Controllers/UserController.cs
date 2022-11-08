@@ -10,7 +10,7 @@ using QuestionAPP.Service.UserService;
 
 namespace QuestionAPP.Controllers
 {
-    [EnableCors]
+    
     [ApiController]
     [Route("user/[controller]")]
     public class UserController : Controller
@@ -24,29 +24,29 @@ namespace QuestionAPP.Controllers
             this.service = service;
         }
 
-
-
-
-
         //METHODS
         [HttpGet]
         [Route( "/all")]
-        public List<User> getUsers()
+        public async Task<ServiceResponse<List<User>>> getUsers()
         {
-            return service.getUsers();
+            return await service.getUsers();
         }
-
-
-
 
         [HttpPost]
         [Route("/add")]
-        public User addUser(User newUser)
+        public async Task<ServiceResponse<User>> addUser(User newUser)
         {
             
-            return service.addUser(newUser);
+            return await service.addUser(newUser);
             
         }
-      
+        [HttpPost]
+        [Route("/login")]
+
+        public async Task<ServiceResponse<User>> login(User user)
+        {
+            return await service.getUser(user);
+        }
+
     }
 }

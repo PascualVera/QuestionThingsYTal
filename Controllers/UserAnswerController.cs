@@ -5,7 +5,7 @@ using QuestionAPP.Service.UserAnswerService;
 
 namespace QuestionAPP.Controllers
 {
-    [EnableCors]
+   
     [Route("api/[controller]")]
     [ApiController]
     public class UserAnswerController : ControllerBase
