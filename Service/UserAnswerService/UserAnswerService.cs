@@ -1,4 +1,5 @@
 ﻿using QuestionAPP.Data;
+using QuestionAPP.Migrations;
 
 namespace QuestionAPP.Service.UserAnswerService
 {
@@ -12,11 +13,15 @@ namespace QuestionAPP.Service.UserAnswerService
         }
 
 
-        public UserAnswer setAnswer(UserAnswer answer)
+        public List<UserAnswer> setAnswer(List<UserAnswer> answers)
         {
-            context.UserAnswers.Add(answer);    
+            foreach (UserAnswer answer in answers)
+            {
+                context.UserAnswers.Add(answer);
+            }
+            
             context.SaveChanges();
-            return answer;
+            return answers;
         }
     }
 }

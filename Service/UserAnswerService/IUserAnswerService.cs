@@ -2,6 +2,6 @@
 {
     public interface IUserAnswerService
     {
-        public UserAnswer setAnswer(UserAnswer answer);
+        public List<UserAnswer> setAnswer(List<UserAnswer> answer);
     }
 }
