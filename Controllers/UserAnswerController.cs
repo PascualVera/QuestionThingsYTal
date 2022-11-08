@@ -21,7 +21,7 @@ namespace QuestionAPP.Controllers
 
         [EnableCors]
         [HttpPost]
-        [Route("/user-anwers")]
+        [Route("/user-answers")]
         public UserAnswer setAnswer(UserAnswer answer)
         {
             return service.setAnswer(answer);  
